@@ -1,0 +1,11 @@
+.env
+.venv
+.idea
+/*/__pycache__/
+__pycache__/
+.DS_Store
+*/*.backup
+*/migrations
+/.pytest_cache
+*/.idea
+.pytest_cache
