@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
+from config import logger
 from ..models import Point
 from ..serializers import (
     InputPointCreateSerializer, OutputPointCreateSerializer,
@@ -49,8 +50,6 @@ class PointsSearchApi(APIView):
             context ={'request': request}
         )
         
-        print(request.query_params)
-        
         if not serializer.is_valid():
             return Response({
                 'message': serializer.errors
@@ -91,7 +90,7 @@ class PointsSearchApi(APIView):
             }, status=status.HTTP_200_OK)
             
         except Exception as e:
-            print(e)
+            logger.error(f"an error occured: {e}")
             return Response({
                 'message': f'An error occured while processing: {str(e)}'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

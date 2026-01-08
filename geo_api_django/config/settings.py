@@ -1,3 +1,4 @@
+import logging
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -6,7 +7,6 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env_path = BASE_DIR / '.env'
-print(env_path)
 if env_path.exists():
     load_dotenv(dotenv_path=env_path, override=True)
 else:
@@ -15,6 +15,9 @@ else:
         load_dotenv(dotenv_path=env_path, override=True)
     else:
         load_dotenv(override=True)
+        
+
+logger = logging.getLogger(__name__)
 
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '<example_key>')
